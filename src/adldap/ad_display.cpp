@@ -153,9 +153,15 @@ QString datetime_display_value(const QString &attribute, const QByteArray &bytes
     const QString value_string = QString(bytes);
     const QDateTime datetime = datetime_string_to_qdatetime(attribute, value_string, adconfig);
     const QDateTime datetime_local = datetime.toLocalTime();
-    const QString display = datetime_local.toString(DATETIME_DISPLAY_FORMAT) + datetime.toLocalTime().timeZoneAbbreviation();
+    //const QString display = datetime_local.toString(DATETIME_DISPLAY_FORMAT) + datetime.toLocalTime().timeZoneAbbreviation();
 
-    return display;
+    //return display;
+    if(!datetime_local.toString(DATETIME_DISPLAY_FORMAT).endsWith(datetime.toLocalTime().timeZoneAbbreviation())){
+ 	return datetime_local.toString(DATETIME_DISPLAY_FORMAT) + datetime.toLocalTime().timeZoneAddreviation();
+    }
+    else {
+    	return datetime_local.toString(DATETIME_DISPLAY_FORMAT);
+    }
 }
 
 QString timespan_display_value(const QByteArray &bytes) {
