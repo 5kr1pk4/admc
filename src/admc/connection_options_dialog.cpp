@@ -100,6 +100,8 @@ ConnectionOptionsDialog::ConnectionOptionsDialog(QWidget *parent)
     if (any_hosts_available) {
         ui->host_warning_label->setVisible(false);
 
+	host_list.sort();
+
         for (const QString &host : host_list) {
             ui->host_select_list->addItem(host);
         }
